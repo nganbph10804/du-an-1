@@ -4,7 +4,7 @@ import java.util.List;
 
 import model.Members;
 
-public class membersDAO implements BookDAO<Members, String> {
+public class membersDAO implements BaseDAO<Members, String> {
 
     @Override
     public void insert(Members entity) {

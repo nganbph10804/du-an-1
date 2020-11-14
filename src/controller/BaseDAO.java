@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @author Administrator
  */
-public interface BookDAO<E, K> {
+public interface BaseDAO<E, K> {
     
     public void insert(E entity);
     public void update(E entity);
