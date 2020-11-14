@@ -18,6 +18,8 @@ public class tra_cuu_nv extends javax.swing.JInternalFrame {
      */
     public tra_cuu_nv() {
         initComponents();
+        btnupdate.setEnabled(false);
+        btnupdate1.setEnabled(false);
     }
 
     /**
@@ -37,6 +39,7 @@ public class tra_cuu_nv extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         btnadd = new javax.swing.JButton();
         btnupdate = new javax.swing.JButton();
+        btnupdate1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbltm = new javax.swing.JTable();
 
@@ -113,18 +116,29 @@ public class tra_cuu_nv extends javax.swing.JInternalFrame {
         btnadd.setBounds(40, 40, 180, 50);
 
         btnupdate.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnupdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/update.png"))); // NOI18N
-        btnupdate.setText("Cập nhật");
+        btnupdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/disabled.png"))); // NOI18N
+        btnupdate.setText("Vô hiệu hóa");
         btnupdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnupdateActionPerformed(evt);
             }
         });
         jPanel1.add(btnupdate);
-        btnupdate.setBounds(40, 100, 180, 50);
+        btnupdate.setBounds(40, 160, 180, 50);
+
+        btnupdate1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnupdate1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/update.png"))); // NOI18N
+        btnupdate1.setText("Cập nhật");
+        btnupdate1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnupdate1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnupdate1);
+        btnupdate1.setBounds(40, 100, 180, 50);
 
         kGradientPanel1.add(jPanel1);
-        jPanel1.setBounds(10, 160, 370, 170);
+        jPanel1.setBounds(10, 160, 370, 240);
 
         tbltm.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -190,22 +204,29 @@ public class tra_cuu_nv extends javax.swing.JInternalFrame {
 
     private void btnupdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnupdateActionPerformed
         // TODO add your handling code here:
-        cap_nhat_nv ghtd = new cap_nhat_nv();
-
-        JDesktopPane desktopPane = getDesktopPane();
-        desktopPane.add(ghtd);
-        ghtd.show();
+       
     }//GEN-LAST:event_btnupdateActionPerformed
 
     private void tbltmMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbltmMouseClicked
         // TODO add your handling code here:
+        
+        int select = tbltm.getSelectedRowCount();
+        if (select >0) {
+            btnupdate.setEnabled(true);
+        btnupdate1.setEnabled(true);
+        }
     }//GEN-LAST:event_tbltmMouseClicked
+
+    private void btnupdate1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnupdate1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnupdate1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnadd;
     private javax.swing.JButton btnsearch1;
     private javax.swing.JButton btnupdate;
+    private javax.swing.JButton btnupdate1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
