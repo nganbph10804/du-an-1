@@ -236,7 +236,7 @@ public class MDI_admin extends javax.swing.JFrame {
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         // TODO add your handling code here:
         nhap_sach ns = new nhap_sach();
-//        ns.setLocation(this.getWidth()/2 - ns.getWidth()/2,(this.getHeight()-20)/2 - ns.getHeight()/2 - 20);
+        ns.setLocation(this.getWidth()/2 - ns.getWidth()/2,(this.getHeight()-20)/2 - ns.getHeight()/2 - 20);
         desktopPane.removeAll();
         desktopPane.add(ns);
         ns.setVisible(true);

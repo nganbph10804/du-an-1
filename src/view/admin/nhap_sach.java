@@ -46,8 +46,6 @@ public class nhap_sach extends javax.swing.JInternalFrame {
         jLabel10 = new javax.swing.JLabel();
         jTextField5 = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        cbohead = new javax.swing.JComboBox<>();
-        jLabel7 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jTextField9 = new javax.swing.JTextField();
@@ -65,6 +63,10 @@ public class nhap_sach extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
+        jTextField2 = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        btnsearch1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
         setClosable(true);
@@ -84,12 +86,12 @@ public class nhap_sach extends javax.swing.JInternalFrame {
             }
         });
         jPanel1.add(jTextField6);
-        jTextField6.setBounds(30, 160, 240, 30);
+        jTextField6.setBounds(20, 90, 240, 30);
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel10.setText("NXB");
         jPanel1.add(jLabel10);
-        jLabel10.setBounds(30, 140, 100, 17);
+        jLabel10.setBounds(20, 70, 100, 17);
 
         jTextField5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jTextField5.addActionListener(new java.awt.event.ActionListener() {
@@ -98,41 +100,22 @@ public class nhap_sach extends javax.swing.JInternalFrame {
             }
         });
         jPanel1.add(jTextField5);
-        jTextField5.setBounds(30, 110, 240, 30);
+        jTextField5.setBounds(20, 40, 240, 30);
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setText("Tác giả");
         jPanel1.add(jLabel8);
-        jLabel8.setBounds(30, 90, 90, 17);
-
-        cbohead.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kinh tế", "Chính trị", "Khoa học", " " }));
-        cbohead.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cboheadMouseClicked(evt);
-            }
-        });
-        cbohead.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboheadActionPerformed(evt);
-            }
-        });
-        jPanel1.add(cbohead);
-        cbohead.setBounds(30, 50, 240, 30);
-
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel7.setText("Đầu sách");
-        jPanel1.add(jLabel7);
-        jLabel7.setBounds(30, 30, 90, 17);
+        jLabel8.setBounds(20, 20, 90, 17);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("Giá tiền");
         jPanel1.add(jLabel5);
-        jLabel5.setBounds(30, 190, 90, 17);
+        jLabel5.setBounds(20, 120, 90, 17);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("Thể loại");
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(30, 240, 90, 17);
+        jLabel3.setBounds(20, 170, 90, 17);
 
         jTextField9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jTextField9.addActionListener(new java.awt.event.ActionListener() {
@@ -141,20 +124,20 @@ public class nhap_sach extends javax.swing.JInternalFrame {
             }
         });
         jPanel1.add(jTextField9);
-        jTextField9.setBounds(30, 360, 110, 30);
+        jTextField9.setBounds(20, 290, 110, 30);
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kinh tế", "Chính trị", "Khoa học", " " }));
         jPanel1.add(jComboBox2);
-        jComboBox2.setBounds(30, 260, 240, 30);
+        jComboBox2.setBounds(20, 190, 240, 30);
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel12.setText("Ngôn ngữ");
         jPanel1.add(jLabel12);
-        jLabel12.setBounds(30, 290, 90, 17);
+        jLabel12.setBounds(20, 220, 90, 17);
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tiếng việt", "Tiếng Anh", "Tiếng Trung", " ", " " }));
         jPanel1.add(jComboBox1);
-        jComboBox1.setBounds(30, 310, 240, 30);
+        jComboBox1.setBounds(20, 240, 240, 30);
 
         jTextField8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jTextField8.addActionListener(new java.awt.event.ActionListener() {
@@ -163,12 +146,12 @@ public class nhap_sach extends javax.swing.JInternalFrame {
             }
         });
         jPanel1.add(jTextField8);
-        jTextField8.setBounds(30, 210, 110, 30);
+        jTextField8.setBounds(20, 140, 110, 30);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setText("Năm xuất bản");
         jPanel1.add(jLabel6);
-        jLabel6.setBounds(30, 340, 110, 17);
+        jLabel6.setBounds(20, 270, 110, 17);
 
         jTextField10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jTextField10.addActionListener(new java.awt.event.ActionListener() {
@@ -177,12 +160,12 @@ public class nhap_sach extends javax.swing.JInternalFrame {
             }
         });
         jPanel1.add(jTextField10);
-        jTextField10.setBounds(30, 410, 110, 30);
+        jTextField10.setBounds(20, 340, 110, 30);
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel9.setText("Số trang");
         jPanel1.add(jLabel9);
-        jLabel9.setBounds(30, 390, 110, 17);
+        jLabel9.setBounds(20, 320, 110, 17);
 
         btnadd1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnadd1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/plus.png"))); // NOI18N
@@ -193,10 +176,10 @@ public class nhap_sach extends javax.swing.JInternalFrame {
             }
         });
         jPanel1.add(btnadd1);
-        btnadd1.setBounds(70, 450, 140, 40);
+        btnadd1.setBounds(180, 310, 140, 40);
 
         kGradientPanel1.add(jPanel1);
-        jPanel1.setBounds(20, 20, 300, 510);
+        jPanel1.setBounds(10, 120, 370, 390);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Chức năng"));
         jPanel2.setLayout(null);
@@ -219,7 +202,7 @@ public class nhap_sach extends javax.swing.JInternalFrame {
         btnsave.setBounds(50, 30, 190, 50);
 
         kGradientPanel1.add(jPanel2);
-        jPanel2.setBounds(340, 420, 510, 100);
+        jPanel2.setBounds(400, 410, 530, 100);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -251,25 +234,76 @@ public class nhap_sach extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(jTable1);
 
         kGradientPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(340, 20, 530, 340);
+        jScrollPane1.setBounds(400, 10, 530, 340);
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/music-and-multimedia.png"))); // NOI18N
         kGradientPanel1.add(jButton1);
-        jButton1.setBounds(530, 370, 71, 40);
+        jButton1.setBounds(590, 360, 71, 40);
+
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("Tra cứu")));
+
+        jTextField2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setText("Đầu sách");
+
+        btnsearch1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnsearch1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/magnifying-glass.png"))); // NOI18N
+        btnsearch1.setText("Tìm");
+        btnsearch1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnsearch1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(90, 90, 90))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
+                        .addComponent(btnsearch1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(5, 5, 5)
+                .addComponent(jLabel4)
+                .addGap(3, 3, 3)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextField2)
+                    .addComponent(btnsearch1, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)))
+        );
+
+        kGradientPanel1.add(jPanel4);
+        jPanel4.setBounds(10, 10, 370, 100);
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/next (1).png"))); // NOI18N
         kGradientPanel1.add(jButton2);
-        jButton2.setBounds(640, 370, 80, 40);
+        jButton2.setBounds(680, 360, 70, 40);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(kGradientPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 905, Short.MAX_VALUE)
+            .addComponent(kGradientPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 945, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(kGradientPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 539, Short.MAX_VALUE)
+            .addComponent(kGradientPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 524, Short.MAX_VALUE)
         );
 
         pack();
@@ -295,20 +329,10 @@ public class nhap_sach extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField10ActionPerformed
 
-    private void cboheadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboheadActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_cboheadActionPerformed
-
     private void btnadd1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnadd1ActionPerformed
         // TODO add your handling code here:
         btnsave.setEnabled(true);
     }//GEN-LAST:event_btnadd1ActionPerformed
-
-    private void cboheadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboheadMouseClicked
-        // TODO add your handling code here:
-        btnadd1.setEnabled(true);
-    }//GEN-LAST:event_cboheadMouseClicked
 
     private void btnaddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnaddActionPerformed
         // TODO add your handling code here:
@@ -318,12 +342,23 @@ public class nhap_sach extends javax.swing.JInternalFrame {
         ds.show();
     }//GEN-LAST:event_btnaddActionPerformed
 
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2ActionPerformed
+
+    private void btnsearch1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsearch1ActionPerformed
+        // TODO add your handling code here:
+        //        btnadd.setEnabled(true);
+
+        
+    }//GEN-LAST:event_btnsearch1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnadd;
     private javax.swing.JButton btnadd1;
     private javax.swing.JButton btnsave;
-    private javax.swing.JComboBox<String> cbohead;
+    private javax.swing.JButton btnsearch1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
@@ -331,16 +366,18 @@ public class nhap_sach extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField10;
+    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField8;
