@@ -15,12 +15,13 @@ import java.util.logging.Logger;
  *
  * @author Administrator
  */
-public class Connection {
+public class Connec {
     public static java.sql.Connection getConnection(){
         java.sql.Connection con=null;
+        String url ="jdbc:mysql://localhost:3306/du_an_1?useSSL=false";
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            con=(java.sql.Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/du_an_1?useSL=false");
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con=(java.sql.Connection) DriverManager.getConnection(url,"root","minh");
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(java.sql.Connection.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {

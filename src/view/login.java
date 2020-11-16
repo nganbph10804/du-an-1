@@ -6,6 +6,7 @@
 package view;
 
 
+import Connection.Connec;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import java.sql.Connection;
@@ -223,13 +224,13 @@ public class login extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-         String url = "jdbc:mysql://localhost:3306/test?useSSL=false";
+         
         String user = txtname.getText();
             String pass = txtpass.getText();
         try {
-            Connection conn = DriverManager.getConnection(url, "root", "minh");
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            PreparedStatement ps = conn.prepareStatement("SELECT username, password FROM test.user where username ='"+user+ "'and SHA1(UNHEX(SHA1('"+pass+"')))");
+            Connection con = Connec.getConnection();
+            
+            PreparedStatement ps = con.prepareStatement("SELECT username, password FROM test.user where username ='"+user+ "'and SHA1(UNHEX(SHA1('"+pass+"')))");
             
             ResultSet rs = ps.executeQuery();
             if(rs.next()) {
