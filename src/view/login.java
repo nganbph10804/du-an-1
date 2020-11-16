@@ -230,7 +230,7 @@ public class login extends javax.swing.JFrame {
         try {
             Connection con = Connec.getConnection();
             
-            PreparedStatement ps = con.prepareStatement("SELECT username, password FROM test.user where username ='"+user+ "'and SHA1(UNHEX(SHA1('"+pass+"')))");
+            PreparedStatement ps = con.prepareStatement("SELECT username, password FROM user where username ='"+user+ "'and SHA1(UNHEX(SHA1('"+pass+"')))");
             
             ResultSet rs = ps.executeQuery();
             if(rs.next()) {
