@@ -7,12 +7,19 @@ package view;
 
 
 import Connection.Connec;
+import Helper.MessageDialog;
+import Helper.RoleHelper;
+import Helper.VallidateLogin;
+import controller.UserDAO;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import model.User;
+import view.admin.MDI_admin;
+import view.employee.MDI_employees;
 /**
  *
  * @author Administrator
@@ -225,22 +232,56 @@ public class login extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
          
-        String user = txtname.getText();
-            String pass = txtpass.getText();
+//        String user = txtname.getText();
+//            String pass = txtpass.getText();
+//        try {
+//            Connection con = Connec.getConnection();
+//            
+//            PreparedStatement ps = con.prepareStatement("SELECT username, password FROM user where username ='"+user+ "'and SHA1(UNHEX(SHA1('"+pass+"')))");
+//            
+//            ResultSet rs = ps.executeQuery();
+//            if(rs.next()) {
+//                JOptionPane.showMessageDialog(this, "Đăng nhập thành công!!!");
+//            }else{
+//                JOptionPane.showMessageDialog(this, "Tài khoản mật khẩu không chính xác!!");
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+        String role=null;
+        StringBuilder sb = new StringBuilder();
+        VallidateLogin.ValidateEmptyLogin(txtname, sb, "Vui lòng nhập username");
+        VallidateLogin.ValidateEmptyLogin(txtpass, sb, "Vui lòng nhập password");
+        if (sb.length()>0) {
+            MessageDialog.showErrorDialog(this, sb.toString(), "Lõi");
+            return;
+        }
+        UserDAO dao = new UserDAO();
         try {
-            Connection con = Connec.getConnection();
-            
-            PreparedStatement ps = con.prepareStatement("SELECT username, password FROM user where username ='"+user+ "'and SHA1(UNHEX(SHA1('"+pass+"')))");
-            
-            ResultSet rs = ps.executeQuery();
-            if(rs.next()) {
-                JOptionPane.showMessageDialog(this, "Đăng nhập thành công!!!");
+            User us = dao.login(txtname.getText(), new String(txtpass.getPassword()));
+            if (us == null) {
+                MessageDialog.showErrorDialog(this, "Username hoặc password không đúng", "Thông báo");
             }else{
-                JOptionPane.showMessageDialog(this, "Tài khoản mật khẩu không chính xác!!");
+                RoleHelper.roleUsers=us;
+                 role =RoleHelper.roleUsers.getRole();
+                System.out.println(role);
+                if (role.equalsIgnoreCase("Quản lí")) {
+                    MDI_admin admin = new MDI_admin();
+                    admin.setVisible(true);
+                }
+                if (role.equalsIgnoreCase("Nhân viên")) {
+                    MDI_employees em = new MDI_employees();
+                    em.setVisible(true);
+                }
+                
+                MessageDialog.showMessageDialog(this, "Đăng nhập thành công","Thông báo");
+                this.dispose();
             }
         } catch (Exception e) {
             e.printStackTrace();
+            MessageDialog.showErrorDialog(this, e.getMessage(), "Lỗi");
         }
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
