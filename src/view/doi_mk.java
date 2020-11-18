@@ -147,7 +147,7 @@ public class doi_mk extends javax.swing.JInternalFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         
-        if (!(txtchangepass.getPassword().equals(new String(txtpass.getPassword())))) {
+        if (!(new String(txtchangepass.getPassword()).equals(new String(txtpass.getPassword())))) {
             MessageDialog.showMessageDialog(this, "password không khớp", "Lỗi");
         }
         
@@ -159,17 +159,19 @@ public class doi_mk extends javax.swing.JInternalFrame {
             MessageDialog.showErrorDialog(this, sb.toString(), "Lỗi");
             return;
         }
-        UserDAO dao = new UserDAO();
         try {
-            User us = dao.changePassword(txtname.getText(), new String(txtpass.getPassword()));
-            if (us == null) {
-                MessageDialog.showErrorDialog(this, "Username hoặc password không đúng", "Thông báo");
-            }else{
+            User us = new User();
+            
+            us.setPassword(new String(txtchangepass.getPassword()));
+            us.setUserName(txtname.getText());
+            UserDAO dao = new UserDAO();
+            if (dao.update(us)) {
+                MessageDialog.showMessageDialog(this, "Đổi mật khẩu thành công", "Thông báo");
+                System.exit(0);
                 login login = new login();
                 login.setVisible(true);
-                
-                MessageDialog.showMessageDialog(this, "Đổi mật khẩu thành công","Thông báo");
-                this.dispose();
+            } else {
+                MessageDialog.showMessageDialog(this, "Đổi mật khẩu thất bại", "Thông báo");
             }
         } catch (Exception e) {
             e.printStackTrace();

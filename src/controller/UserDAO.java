@@ -11,7 +11,10 @@ import java.sql.ResultSet;
 import java.util.List;
 
 import Connection.Connec;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.User;
 
 /**
@@ -22,7 +25,7 @@ public class UserDAO implements BaseDAO<User, String> {
 
     @Override
     public boolean insert(User entity)  {
-        String sql = "INSERT INTO USER (USERNAME,PASSWORD,NAME,BIRTH_DAY,GENDER,PHONE,EMAIL,ADDRESS) VALUES(?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO USER (USERNAME,PASSWORD,NAME,BIRTH_DAY,GENDER,PHONE,EMAIL,ADDRESS) VALUES(?,SHA1(?),?,?,?,?,?,?)";
 
         try (
             Connection con = Connec.getConnection();
@@ -85,7 +88,7 @@ public class UserDAO implements BaseDAO<User, String> {
 
     @Override
     public List<Object[]> selectBySQL() {
-        List<User> list = new ArrayList<>();
+        List<Object[]> list = new ArrayList<>();
         String sql ="select user_id, username,name,birth_day,gender,phonde ,email,adderss from du_an_1.user";
         try(
             Connection con = Connec.getConnection();
@@ -93,28 +96,27 @@ public class UserDAO implements BaseDAO<User, String> {
                 ) {
            
             ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                User us = new User();
-                us.setUserName(rs.getString("user_id"));
-                us.setUserName(rs.getString("username"));
-                us.setUserName(rs.getString("name"));
-                us.setUserName(rs.getString("birth_day"));
-                us.setUserName(rs.getString("gender"));
-                us.setUserName(rs.getString("phonde"));
-                us.setUserName(rs.getString("email"));
-                us.setUserName(rs.getString("adderss"));
-                list.add(us);
-            }
             
-        } catch (Exception e) {
+            while(rs.next()) {
+                Object [] user = new Object[8];
+                for(int i =0;i<=3;i++){
+                    user[i]=rs.getObject(i+1);
+                }
+                list.add(user);
+            }
+            con.close();
+                  
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            return list; 
         }
-        return null;
     }
 
     @Override
     public User selectById(String key) {
         List<User> list = new ArrayList<>();
-        String sql ="select user_id, username,name,birth_day,gender,phonde ,email,adderss from du_an_1.user";
+        String sql ="select user_id, username,name,birth_day,gender,phonde ,email,adderss from du_an_1.user where user_id=?";
         try(
             Connection con = Connec.getConnection();
             PreparedStatement ps = con.prepareStatement(sql); 
@@ -132,14 +134,14 @@ public class UserDAO implements BaseDAO<User, String> {
                 us.setUserName(rs.getString("phonde"));
                 us.setUserName(rs.getString("email"));
                 us.setUserName(rs.getString("adderss"));
-                list.add(us);
+                return us;
                 
             }
             
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return (User)  list;
+        return null;
     }
 
     public User login(String username, String password) throws Exception {
@@ -165,8 +167,8 @@ public class UserDAO implements BaseDAO<User, String> {
         return null;
     }
 
-    public User changePassword(String username, String password) throws Exception {
-        String sql = "update user set password =? where username=?";
+    public User changePassword(String password, String username) throws Exception {
+        String sql = "update user set  password =? where USERNAME=?";
         try {
 
             Connection con = Connec.getConnection();
