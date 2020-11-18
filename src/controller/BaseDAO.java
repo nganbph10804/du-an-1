@@ -13,9 +13,9 @@ import java.util.List;
  */
 public interface BaseDAO<E, K> {
     
-    public void insert(E entity);
-    public void update(E entity);
-    public void delete(K key);
-    public List<E> selectAll();
+    public boolean insert(E entity) throws Exception;
+    public boolean update(E entity) throws Exception;
+    public boolean delete(K key) throws Exception;
+    public List<Object[]> selectBySQL();
     public E selectById(K key);
 }
