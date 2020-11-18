@@ -22,7 +22,7 @@ public class UserDAO implements BaseDAO<User, String> {
 
     @Override
     public boolean insert(User entity)  {
-        String sql = "INSERT INTO USER (USERNAME,PASSWORD,NAME,BIRTH_DAY,GENDER,PHONE,EMAIL,ADDRESS) VALUES(?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO USER (USERNAME,PASSWORD,NAME,BIRTH_DAY,GENDER,PHONE,EMAIL,ADDRESS) VALUES(?,SHA1(?),?,?,?,?,?,?)";
 
         try (
             Connection con = Connec.getConnection();
@@ -165,27 +165,27 @@ public class UserDAO implements BaseDAO<User, String> {
         return null;
     }
 
-    public User changePassword(String username, String password) throws Exception {
-        String sql = "update user set password =? where username=?";
-        try {
+    public boolean changePassword(User entity){
+        String sql = "update  du_an_1.user set password=SHA1(?) where username=?";
 
+        try (
             Connection con = Connec.getConnection();
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setString(1, password);
-            ps.setString(2, username);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                User us = new User();
-                us.setUserName(username);
-                String roleUse = null;
-                us.setRole(rs.getString("role"));
-
-                return us;
+            PreparedStatement ps = con.prepareStatement(sql);) {
+            ps.setString(1, entity.getPassword());
+            ps.setString(2, entity.getUserName());
+            
+            
+            int rs = ps.executeUpdate();
+            if(rs>0){
+                con.close();
+                return true;
+            }else{
+                con.close();
+                return false;
             }
-        } catch (Exception e) {
-            // TODO: handle exception
+        } catch(Exception e){
+                return false;
         }
-        return null;
     }
 
 }

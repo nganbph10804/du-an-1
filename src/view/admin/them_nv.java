@@ -225,12 +225,14 @@ public class them_nv extends javax.swing.JInternalFrame {
         Validation.ValidateEmpty(txtphone, sb, "Vui lòng nhập số điẹn thoại");
         Validation.ValidateEmpty(txtemail, sb, "Vui lòng nhập họ email");
         Validation.ValidateEmpty(txtaddress, sb, "Vui lòng nhập địa chỉ");
+        Validation.ValidateDate(txtdate, sb, "Mời nhập đúng định dạng yyyy-MM-dd");
+        Validation.ValidateNumbers(txtphone, sb, "Vui lòng nhập SĐT là số và không âm");
+        Validation.ValidateEmail(txtemail, sb, "Vui lòng nhập email the định dạng Example@gmail.com");
         if (sb.length()>0) {
             MessageDialog.showErrorDialog(this, sb.toString(), "Lỗi");
             return;
         }
-        Validation.ValidateDate(txtdate, sb, "Mời nhập đúng định dạng yyyy-MM-dd");
-        Validation.ValidateNumbers(txtphone, sb, "Lỗi");
+        
         try {
             User us = new User();
             us.setUserName(txtuser.getText());

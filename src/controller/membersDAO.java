@@ -7,17 +7,17 @@ import model.Members;
 public class membersDAO implements BaseDAO<Members, String> {
 
     @Override
-    public boolean insert(Members entity) throws Exception {
+    public boolean insert(Members entity) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean update(Members entity) throws Exception {
+    public boolean update(Members entity) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean delete(String key) throws Exception {
+    public boolean delete(String key) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -30,6 +30,8 @@ public class membersDAO implements BaseDAO<Members, String> {
     public Members selectById(String key) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+  
 
    
 

@@ -5,13 +5,14 @@
  */
 package view.employee;
 
-import view.doi_mk;
+
 import view.employee.gia_han_the_doc;
 import view.employee.gia_han_the_muon;
 import view.login;
 import view.employee.members;
 import view.employee.muon_sach;
 import view.admin.nhap_sach;
+import view.changePassword;
 import view.employee.them_the_doc;
 import view.employee.tra_cuu_nhap_sach;
 import view.employee.tra_cuu_the_doc;
@@ -217,18 +218,16 @@ public class MDI_employees extends javax.swing.JFrame {
 
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
         // TODO add your handling code here:
-        doi_mk dmk = new doi_mk();
-        desktopPane.removeAll();
-        desktopPane.add(dmk);
+        changePassword dmk = new changePassword();
+        this.dispose();
         dmk.setVisible(true);
-        dmk.setLocation(this.getWidth()/2 - dmk.getWidth()/2,(this.getHeight()-20)/2 - dmk.getHeight()/2 - 20);
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
     private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
         // TODO add your handling code here:
         login log = new login();
         log.setVisible(true);
-        setVisible(false);
+        this.dispose();
         
     }//GEN-LAST:event_jMenuItem14ActionPerformed
 

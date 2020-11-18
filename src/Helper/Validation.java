@@ -8,6 +8,7 @@ package Helper;
 import java.awt.Color;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.regex.Pattern;
 import javax.swing.JPasswordField;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -77,5 +78,13 @@ public class Validation {
        return false;
     }
     
-    
+     public static void ValidateEmail(JTextField field, StringBuilder sb,String errorMessage) {
+        field.setBackground(Color.white);
+        if (!(Pattern.matches("^[a-zA-Z0-9]+[@]{1}+[a-zA-Z0-9]+[.]{1}+[a-zA-Z0-9]+$", field.getText()))) {       
+            
+            sb.append(errorMessage).append("\n");
+            field.setBackground(Color.yellow);
+            field.requestFocus();
+        }
+    }
 }
