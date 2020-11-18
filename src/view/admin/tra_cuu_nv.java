@@ -187,10 +187,7 @@ public class tra_cuu_nv extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void btnsearch1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsearch1ActionPerformed
-        // TODO add your handling code here:
-        //        btnadd.setEnabled(true);
         
-
         btnupdate.setEnabled(true);
     }//GEN-LAST:event_btnsearch1ActionPerformed
 

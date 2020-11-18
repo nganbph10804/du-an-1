@@ -6,6 +6,8 @@
 package Helper;
 
 import java.awt.Color;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JPasswordField;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -47,4 +49,33 @@ public class Validation {
             field.setBackground(Color.white);
         }
     }
+    
+    public static void ValidateDate(JTextField field, StringBuilder sb,String errorMessage) {
+        try {
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            Date date = format.parse(field.getText());
+            field.setBackground(Color.white);
+        } catch (Exception e) {
+            sb.append(errorMessage).append("\n");
+               field.setBackground(Color.yellow);
+               field.requestFocus();
+        }
+       
+    }
+    
+    public static boolean ValidateNumbers(JTextField field, StringBuilder sb,String errorMessage) {
+        try {
+           int numbers = Integer.parseInt(field.getText());
+            field.setBackground(Color.white);
+            
+        } catch (Exception e) {
+            sb.append(errorMessage).append("\n");
+               field.setBackground(Color.yellow);
+               field.requestFocus();
+               
+        }
+       return false;
+    }
+    
+    
 }

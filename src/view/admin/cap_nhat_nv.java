@@ -5,6 +5,11 @@
  */
 package view.admin;
 
+import Helper.MessageDialog;
+import Helper.Validation;
+import controller.UserDAO;
+import model.User;
+
 /**
  *
  * @author Administrator
@@ -16,6 +21,7 @@ public class cap_nhat_nv extends javax.swing.JInternalFrame {
      */
     public cap_nhat_nv() {
         initComponents();
+        txtid.setEnabled(false);
     }
 
     /**
@@ -27,33 +33,32 @@ public class cap_nhat_nv extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         kGradientPanel1 = new keeptoo.KGradientPanel();
         jPanel4 = new javax.swing.JPanel();
-        jTextField3 = new javax.swing.JTextField();
+        txtsearch = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         btnsearch1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jLabel3 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        rdofemale = new javax.swing.JRadioButton();
         jLabel9 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
+        txtdate = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        rdomale = new javax.swing.JRadioButton();
         jLabel12 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txtemail = new javax.swing.JTextField();
         btnadd = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txtaddress = new javax.swing.JTextArea();
         jLabel11 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        txtphone = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        txtname = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        txtuser = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
+        txtid = new javax.swing.JTextField();
 
         setClosable(true);
         setMaximizable(true);
@@ -64,10 +69,10 @@ public class cap_nhat_nv extends javax.swing.JInternalFrame {
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("Tra cứu")));
 
-        jTextField3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        txtsearch.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtsearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                txtsearchActionPerformed(evt);
             }
         });
 
@@ -94,7 +99,7 @@ public class cap_nhat_nv extends javax.swing.JInternalFrame {
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(90, 90, 90))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtsearch, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(20, 20, 20)
                         .addComponent(btnsearch1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())))
@@ -106,7 +111,7 @@ public class cap_nhat_nv extends javax.swing.JInternalFrame {
                 .addComponent(jLabel5)
                 .addGap(3, 3, 3)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField3)
+                    .addComponent(txtsearch)
                     .addComponent(btnsearch1, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)))
         );
 
@@ -116,57 +121,51 @@ public class cap_nhat_nv extends javax.swing.JInternalFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Thông tin nhân viên"));
         jPanel1.setLayout(null);
 
-        jRadioButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jRadioButton1.setText("Nữ");
-        jPanel1.add(jRadioButton1);
-        jRadioButton1.setBounds(420, 200, 89, 25);
-
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel3.setText("Password");
-        jPanel1.add(jLabel3);
-        jLabel3.setBounds(10, 120, 90, 17);
-
-        jPasswordField1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jPanel1.add(jPasswordField1);
-        jPasswordField1.setBounds(10, 140, 240, 31);
+        buttonGroup1.add(rdofemale);
+        rdofemale.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        rdofemale.setText("Nữ");
+        jPanel1.add(rdofemale);
+        rdofemale.setBounds(420, 200, 89, 25);
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel9.setText("Ngày sinh");
         jPanel1.add(jLabel9);
         jLabel9.setBounds(340, 120, 90, 17);
 
-        jTextField8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jTextField8.addActionListener(new java.awt.event.ActionListener() {
+        txtdate.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField8ActionPerformed(evt);
+                txtdateActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField8);
-        jTextField8.setBounds(340, 140, 240, 30);
+        jPanel1.add(txtdate);
+        txtdate.setBounds(340, 140, 240, 30);
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel13.setText("Giới tính");
         jPanel1.add(jLabel13);
         jLabel13.setBounds(340, 180, 90, 17);
 
-        jRadioButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jRadioButton2.setText("Nam");
-        jPanel1.add(jRadioButton2);
-        jRadioButton2.setBounds(340, 200, 60, 25);
+        buttonGroup1.add(rdomale);
+        rdomale.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        rdomale.setSelected(true);
+        rdomale.setText("Nam");
+        jPanel1.add(rdomale);
+        rdomale.setBounds(340, 200, 60, 25);
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel12.setText("Email");
         jPanel1.add(jLabel12);
-        jLabel12.setBounds(340, 230, 90, 17);
+        jLabel12.setBounds(10, 120, 90, 17);
 
-        jTextField2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        txtemail.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtemail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                txtemailActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField2);
-        jTextField2.setBounds(340, 250, 240, 30);
+        jPanel1.add(txtemail);
+        txtemail.setBounds(10, 140, 240, 30);
 
         btnadd.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnadd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/update.png"))); // NOI18N
@@ -177,11 +176,11 @@ public class cap_nhat_nv extends javax.swing.JInternalFrame {
             }
         });
         jPanel1.add(btnadd);
-        btnadd.setBounds(340, 300, 140, 40);
+        btnadd.setBounds(340, 240, 140, 40);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane3.setViewportView(jTextArea1);
+        txtaddress.setColumns(20);
+        txtaddress.setRows(5);
+        jScrollPane3.setViewportView(txtaddress);
 
         jPanel1.add(jScrollPane3);
         jScrollPane3.setBounds(10, 190, 240, 100);
@@ -191,42 +190,42 @@ public class cap_nhat_nv extends javax.swing.JInternalFrame {
         jPanel1.add(jLabel11);
         jLabel11.setBounds(10, 170, 90, 17);
 
-        jTextField6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+        txtphone.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtphone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
+                txtphoneActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField6);
-        jTextField6.setBounds(340, 90, 240, 30);
+        jPanel1.add(txtphone);
+        txtphone.setBounds(340, 90, 240, 30);
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel10.setText("Số điện thoại");
         jPanel1.add(jLabel10);
         jLabel10.setBounds(340, 70, 100, 17);
 
-        jTextField5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+        txtname.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtname.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
+                txtnameActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField5);
-        jTextField5.setBounds(340, 40, 240, 30);
+        jPanel1.add(txtname);
+        txtname.setBounds(340, 40, 240, 30);
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setText("Họ tên");
         jPanel1.add(jLabel8);
         jLabel8.setBounds(340, 20, 90, 17);
 
-        jTextField7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jTextField7.addActionListener(new java.awt.event.ActionListener() {
+        txtuser.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtuser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField7ActionPerformed(evt);
+                txtuserActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField7);
-        jTextField7.setBounds(10, 90, 240, 30);
+        jPanel1.add(txtuser);
+        txtuser.setBounds(10, 90, 240, 30);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Username");
@@ -238,14 +237,14 @@ public class cap_nhat_nv extends javax.swing.JInternalFrame {
         jPanel1.add(jLabel6);
         jLabel6.setBounds(10, 20, 110, 17);
 
-        jTextField9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jTextField9.addActionListener(new java.awt.event.ActionListener() {
+        txtid.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtid.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField9ActionPerformed(evt);
+                txtidActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField9);
-        jTextField9.setBounds(10, 40, 240, 30);
+        jPanel1.add(txtid);
+        txtid.setBounds(10, 40, 240, 30);
 
         kGradientPanel1.add(jPanel1);
         jPanel1.setBounds(10, 120, 600, 350);
@@ -264,33 +263,70 @@ public class cap_nhat_nv extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
+    private void txtuserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtuserActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField7ActionPerformed
+    }//GEN-LAST:event_txtuserActionPerformed
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+    private void txtnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
+    }//GEN-LAST:event_txtnameActionPerformed
 
-    private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
+    private void txtdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtdateActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField8ActionPerformed
+    }//GEN-LAST:event_txtdateActionPerformed
 
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+    private void txtphoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtphoneActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
+    }//GEN-LAST:event_txtphoneActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void txtemailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtemailActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_txtemailActionPerformed
 
     private void btnaddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnaddActionPerformed
         // TODO add your handling code here:
+        StringBuilder sb = new StringBuilder();
+        Validation.ValidateEmpty(txtuser, sb, "Vui lòng nhập username");
+        Validation.ValidateEmpty(txtname, sb, "Vui lòng nhập họ tên");
+        Validation.ValidateEmpty(txtdate, sb, "Vui lòng nhập ngày sinh");
+        Validation.ValidateEmpty(txtphone, sb, "Vui lòng nhập số điẹn thoại");
+        Validation.ValidateEmpty(txtemail, sb, "Vui lòng nhập họ email");
+        Validation.ValidateEmpty(txtaddress, sb, "Vui lòng nhập địa chỉ");
+        if (sb.length()>0) {
+            MessageDialog.showErrorDialog(this, sb.toString(), "Lỗi");
+            return;
+        }
+        try {
+            User us = new User();
+            us.setUserName(txtuser.getText());
+            us.setName(txtname.getText());
+             us.setBirthDay(txtdate.getText());
+            String gender =null;
+            if (rdomale.isSelected()) {
+                gender="Nam";
+            }
+            if (rdofemale.isSelected()) {
+                gender="Nữ";
+            }
+            us.setGender(gender);
+            us.setPhone(txtphone.getText());
+            us.setEmail(txtemail.getText());       
+            us.setAddress(txtaddress.getText());
+            UserDAO dao = new UserDAO();
+            if (dao.update(us)) {
+                MessageDialog.showMessageDialog(this, "Thêm nhân viên thành công", "Thông báo");
+            }else{
+                MessageDialog.showMessageDialog(this, "Thêm nhân viên thất bại", "Thông báo");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            MessageDialog.showErrorDialog(this, e.getMessage(), "Lỗi");
+        }
     }//GEN-LAST:event_btnaddActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void txtsearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtsearchActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_txtsearchActionPerformed
 
     private void btnsearch1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsearch1ActionPerformed
         // TODO add your handling code here:
@@ -299,19 +335,19 @@ public class cap_nhat_nv extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_btnsearch1ActionPerformed
 
-    private void jTextField9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField9ActionPerformed
+    private void txtidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtidActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField9ActionPerformed
+    }//GEN-LAST:event_txtidActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnadd;
     private javax.swing.JButton btnsearch1;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -319,18 +355,17 @@ public class cap_nhat_nv extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
     private keeptoo.KGradientPanel kGradientPanel1;
+    private javax.swing.JRadioButton rdofemale;
+    private javax.swing.JRadioButton rdomale;
+    private javax.swing.JTextArea txtaddress;
+    private javax.swing.JTextField txtdate;
+    private javax.swing.JTextField txtemail;
+    private javax.swing.JTextField txtid;
+    private javax.swing.JTextField txtname;
+    private javax.swing.JTextField txtphone;
+    private javax.swing.JTextField txtsearch;
+    private javax.swing.JTextField txtuser;
     // End of variables declaration//GEN-END:variables
 }

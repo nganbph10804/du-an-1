@@ -229,6 +229,8 @@ public class them_nv extends javax.swing.JInternalFrame {
             MessageDialog.showErrorDialog(this, sb.toString(), "Lỗi");
             return;
         }
+        Validation.ValidateDate(txtdate, sb, "Mời nhập đúng định dạng yyyy-MM-dd");
+        Validation.ValidateNumbers(txtphone, sb, "Lỗi");
         try {
             User us = new User();
             us.setUserName(txtuser.getText());
@@ -249,6 +251,14 @@ public class them_nv extends javax.swing.JInternalFrame {
             UserDAO dao = new UserDAO();
             if (dao.insert(us)) {
                 MessageDialog.showMessageDialog(this, "Thêm nhân viên thành công", "Thông báo");
+                txtuser.setText("");
+                txtpass.setText("");
+                txtname.setText("");
+                txtdate.setText("");
+                rdomale.setSelected(true);
+                txtphone.setText("");
+                txtemail.setText("");
+                txtaddress.setText("");
             }else{
                 MessageDialog.showMessageDialog(this, "Thêm nhân viên thất bại", "Thông báo");
             }
