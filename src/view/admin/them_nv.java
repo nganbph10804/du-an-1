@@ -227,6 +227,7 @@ public class them_nv extends javax.swing.JInternalFrame {
         Validation.ValidateEmpty(txtaddress, sb, "Vui lòng nhập địa chỉ");
         Validation.ValidateDate(txtdate, sb, "Mời nhập đúng định dạng yyyy-MM-dd");
         Validation.ValidateNumbers(txtphone, sb, "Mời nhập SDT là số và không âm");
+        Validation.ValidateEmail(txtemail, sb, "Vui lòng nhập đúng định dạng email Exanple@gmail.com");
         
         if (sb.length()>0) {
             MessageDialog.showErrorDialog(this, sb.toString(), "Lỗi");
