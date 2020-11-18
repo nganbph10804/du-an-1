@@ -64,15 +64,20 @@ public class Validation {
     }
     
     public static boolean ValidateNumbers(JTextField field, StringBuilder sb,String errorMessage) {
+        
         try {
            int numbers = Integer.parseInt(field.getText());
             field.setBackground(Color.white);
-            
+            if (numbers <0) {
+                sb.append(errorMessage).append("\n");
+                field.setBackground(Color.yellow);
+                field.requestFocus();
+            }
         } catch (Exception e) {
             sb.append(errorMessage).append("\n");
-               field.setBackground(Color.yellow);
-               field.requestFocus();
-               
+            field.setBackground(Color.yellow);
+            field.requestFocus();
+            return true;
         }
        return false;
     }
