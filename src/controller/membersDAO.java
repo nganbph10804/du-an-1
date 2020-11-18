@@ -25,7 +25,7 @@ public class membersDAO implements BaseDAO<Members, String> {
     }
 
     @Override
-    public List<Object[]> selectBySQL() {
+    public List<Members> selectBySQL() {
         // TODO Auto-generated method stub
         return null;
     }
