@@ -6,25 +6,24 @@
 package view;
 
 import Helper.MessageDialog;
-import Helper.RoleHelper;
 import Helper.Validation;
 import controller.UserDAO;
-import view.admin.MDI_admin;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import model.User;
-import view.employee.MDI_employees;
 
 /**
  *
  * @author Administrator
  */
-public class doi_mk extends javax.swing.JInternalFrame {
+public class changePassword extends javax.swing.JFrame {
 
     /**
-     * Creates new form doi_mk
+     * Creates new form changePassword
      */
-    public doi_mk() {
+    public changePassword() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -37,7 +36,7 @@ public class doi_mk extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         kGradientPanel1 = new keeptoo.KGradientPanel();
-        txtname = new javax.swing.JTextField();
+        txtuser = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -46,24 +45,26 @@ public class doi_mk extends javax.swing.JInternalFrame {
         jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         txtchangepass = new javax.swing.JPasswordField();
         jLabel6 = new javax.swing.JLabel();
 
-        setClosable(true);
-        setMaximizable(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         kGradientPanel1.setkEndColor(new java.awt.Color(52, 143, 80));
         kGradientPanel1.setkStartColor(new java.awt.Color(86, 180, 211));
         kGradientPanel1.setLayout(null);
 
-        txtname.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtname.addActionListener(new java.awt.event.ActionListener() {
+        txtuser.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtuser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtnameActionPerformed(evt);
+                txtuserActionPerformed(evt);
             }
         });
-        kGradientPanel1.add(txtname);
-        txtname.setBounds(328, 81, 240, 30);
+        kGradientPanel1.add(txtuser);
+        txtuser.setBounds(328, 81, 240, 30);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/rsz_1logo1.png"))); // NOI18N
         kGradientPanel1.add(jLabel1);
@@ -112,7 +113,29 @@ public class doi_mk extends javax.swing.JInternalFrame {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("ĐỔI MẬT KHẨU");
         jPanel2.add(jLabel5);
-        jLabel5.setBounds(60, 10, 160, 30);
+        jLabel5.setBounds(60, 0, 160, 60);
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("-");
+        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel7MouseClicked(evt);
+            }
+        });
+        jPanel2.add(jLabel7);
+        jLabel7.setBounds(620, 0, 20, 60);
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("X");
+        jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel8MouseClicked(evt);
+            }
+        });
+        jPanel2.add(jLabel8);
+        jLabel8.setBounds(650, 0, 40, 60);
 
         kGradientPanel1.add(jPanel2);
         jPanel2.setBounds(0, 0, 688, 55);
@@ -130,29 +153,29 @@ public class doi_mk extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(kGradientPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 667, Short.MAX_VALUE)
+            .addComponent(kGradientPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 685, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(kGradientPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE)
+            .addComponent(kGradientPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnameActionPerformed
+    private void txtuserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtuserActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtnameActionPerformed
+    }//GEN-LAST:event_txtuserActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        
+
         if (!(new String(txtchangepass.getPassword()).equals(new String(txtpass.getPassword())))) {
-            MessageDialog.showMessageDialog(this, "password không khớp", "Lỗi");
+            MessageDialog.showMessageDialog(this, "Password không khớp", "Lỗi");
         }
-        
+
         StringBuilder sb = new StringBuilder();
-        Validation.ValidateEmpty(txtname, sb, "Vui lòng nhập username");
+        Validation.ValidateEmpty(txtuser, sb, "Vui lòng nhập username");
         Validation.ValidateEmpty(txtpass, sb, "Vui lòng nhập password");
         Validation.ValidateEmpty(txtpass, sb, "Vui lòng nhập password mới");
         if (sb.length()>0) {
@@ -161,16 +184,16 @@ public class doi_mk extends javax.swing.JInternalFrame {
         }
         try {
             User us = new User();
-            
-            us.setPassword(new String(txtchangepass.getPassword()));
-            us.setUserName(txtname.getText());
+            us.setUserName(txtuser.getText());
+            us.setPassword(new String(txtchangepass.getPassword()));;
+
             UserDAO dao = new UserDAO();
-            if (dao.update(us)) {
+            if (dao.changePassword(us)) {
                 MessageDialog.showMessageDialog(this, "Đổi mật khẩu thành công", "Thông báo");
-                System.exit(0);
+                this.dispose();
                 login login = new login();
                 login.setVisible(true);
-            } else {
+            }else{
                 MessageDialog.showMessageDialog(this, "Đổi mật khẩu thất bại", "Thông báo");
             }
         } catch (Exception e) {
@@ -187,6 +210,50 @@ public class doi_mk extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+        // TODO add your handling code here:
+        this.setState(JFrame.ICONIFIED);
+    }//GEN-LAST:event_jLabel7MouseClicked
+
+    private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jLabel8MouseClicked
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(changePassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(changePassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(changePassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(changePassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new changePassword().setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -196,10 +263,12 @@ public class doi_mk extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel2;
     private keeptoo.KGradientPanel kGradientPanel1;
     private javax.swing.JPasswordField txtchangepass;
-    private javax.swing.JTextField txtname;
     private javax.swing.JPasswordField txtpass;
+    private javax.swing.JTextField txtuser;
     // End of variables declaration//GEN-END:variables
 }

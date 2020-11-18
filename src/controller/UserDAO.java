@@ -11,10 +11,7 @@ import java.sql.ResultSet;
 import java.util.List;
 
 import Connection.Connec;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import model.User;
 
 /**
@@ -88,7 +85,7 @@ public class UserDAO implements BaseDAO<User, String> {
 
     @Override
     public List<Object[]> selectBySQL() {
-        List<Object[]> list = new ArrayList<>();
+        List<User> list = new ArrayList<>();
         String sql ="select user_id, username,name,birth_day,gender,phonde ,email,adderss from du_an_1.user";
         try(
             Connection con = Connec.getConnection();
@@ -96,27 +93,28 @@ public class UserDAO implements BaseDAO<User, String> {
                 ) {
            
             ResultSet rs = ps.executeQuery();
-            
-            while(rs.next()) {
-                Object [] user = new Object[8];
-                for(int i =0;i<=3;i++){
-                    user[i]=rs.getObject(i+1);
-                }
-                list.add(user);
+            if (rs.next()) {
+                User us = new User();
+                us.setUserName(rs.getString("user_id"));
+                us.setUserName(rs.getString("username"));
+                us.setUserName(rs.getString("name"));
+                us.setUserName(rs.getString("birth_day"));
+                us.setUserName(rs.getString("gender"));
+                us.setUserName(rs.getString("phonde"));
+                us.setUserName(rs.getString("email"));
+                us.setUserName(rs.getString("adderss"));
+                list.add(us);
             }
-            con.close();
-                  
-        } catch (SQLException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }finally{
-            return list; 
+            
+        } catch (Exception e) {
         }
+        return null;
     }
 
     @Override
     public User selectById(String key) {
         List<User> list = new ArrayList<>();
-        String sql ="select user_id, username,name,birth_day,gender,phonde ,email,adderss from du_an_1.user where user_id=?";
+        String sql ="select user_id, username,name,birth_day,gender,phonde ,email,adderss from du_an_1.user";
         try(
             Connection con = Connec.getConnection();
             PreparedStatement ps = con.prepareStatement(sql); 
@@ -134,14 +132,14 @@ public class UserDAO implements BaseDAO<User, String> {
                 us.setUserName(rs.getString("phonde"));
                 us.setUserName(rs.getString("email"));
                 us.setUserName(rs.getString("adderss"));
-                return us;
+                list.add(us);
                 
             }
             
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
+        return (User)  list;
     }
 
     public User login(String username, String password) throws Exception {
@@ -167,27 +165,27 @@ public class UserDAO implements BaseDAO<User, String> {
         return null;
     }
 
-    public User changePassword(String password, String username) throws Exception {
-        String sql = "update user set  password =? where USERNAME=?";
-        try {
+    public boolean changePassword(User entity){
+        String sql = "update  du_an_1.user set password=SHA1(?) where username=?";
 
+        try (
             Connection con = Connec.getConnection();
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setString(1, password);
-            ps.setString(2, username);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                User us = new User();
-                us.setUserName(username);
-                String roleUse = null;
-                us.setRole(rs.getString("role"));
-
-                return us;
+            PreparedStatement ps = con.prepareStatement(sql);) {
+            ps.setString(1, entity.getPassword());
+            ps.setString(2, entity.getUserName());
+            
+            
+            int rs = ps.executeUpdate();
+            if(rs>0){
+                con.close();
+                return true;
+            }else{
+                con.close();
+                return false;
             }
-        } catch (Exception e) {
-            // TODO: handle exception
+        } catch(Exception e){
+                return false;
         }
-        return null;
     }
 
 }
