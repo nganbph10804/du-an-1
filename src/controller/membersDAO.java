@@ -7,33 +7,32 @@ import model.Members;
 public class membersDAO implements BaseDAO<Members, String> {
 
     @Override
-    public void insert(Members entity) {
-        
-
+    public boolean insert(Members entity) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void update(Members entity) {
-        // TODO Auto-generated method stub
-
+    public boolean update(Members entity) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void delete(String key) {
-        // TODO Auto-generated method stub
-
+    public boolean delete(String key) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<Members> selectAll() {
-        // TODO Auto-generated method stub
-        return null;
+    public List<Object[]> selectBySQL() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public Members selectById(String key) {
-        // TODO Auto-generated method stub
-        return null;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+   
+
+
     
 }

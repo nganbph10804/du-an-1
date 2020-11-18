@@ -187,9 +187,7 @@ public class tra_cuu_nv extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void btnsearch1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsearch1ActionPerformed
-        // TODO add your handling code here:
-        //        btnadd.setEnabled(true);
-
+        
         btnupdate.setEnabled(true);
     }//GEN-LAST:event_btnsearch1ActionPerformed
 
@@ -219,6 +217,10 @@ public class tra_cuu_nv extends javax.swing.JInternalFrame {
 
     private void btnupdate1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnupdate1ActionPerformed
         // TODO add your handling code here:
+        cap_nhat_nv cn= new cap_nhat_nv();
+        JDesktopPane desktopPane = getDesktopPane();
+        desktopPane.add(cn);
+        cn.show();
     }//GEN-LAST:event_btnupdate1ActionPerformed
 
 

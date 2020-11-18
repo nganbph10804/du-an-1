@@ -10,25 +10,22 @@ package model;
  * @author Administrator
  */
 public class User {
-    private String userName, password,name,gender,email,birthDay, address,role;
-    private int phone,status;
-
-
-
+    private String userName, password,name,phone,gender,email,birthDay, address,role;
+    private int status;
 
     public User() {
     }
 
-    public User(String userName, String password, String name, String gender, String email, String birthDay, String address, String role, int phone, int status) {
+    public User(String userName, String password, String name, String phone, String gender, String email, String birthDay, String address, String role, int status) {
         this.userName = userName;
         this.password = password;
         this.name = name;
+        this.phone = phone;
         this.gender = gender;
         this.email = email;
         this.birthDay = birthDay;
         this.address = address;
         this.role = role;
-        this.phone = phone;
         this.status = status;
     }
 
@@ -54,6 +51,14 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getPhone() {
+        return this.phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getGender() {
@@ -96,14 +101,6 @@ public class User {
         this.role = role;
     }
 
-    public int getPhone() {
-        return this.phone;
-    }
-
-    public void setPhone(int phone) {
-        this.phone = phone;
-    }
-
     public int getStatus() {
         return this.status;
     }
@@ -124,6 +121,11 @@ public class User {
 
     public User name(String name) {
         this.name = name;
+        return this;
+    }
+
+    public User phone(String phone) {
+        this.phone = phone;
         return this;
     }
 
@@ -152,16 +154,10 @@ public class User {
         return this;
     }
 
-    public User phone(int phone) {
-        this.phone = phone;
-        return this;
-    }
-
     public User status(int status) {
         this.status = status;
         return this;
     }
-
 
     @Override
     public String toString() {
@@ -169,12 +165,12 @@ public class User {
             " userName='" + getUserName() + "'" +
             ", password='" + getPassword() + "'" +
             ", name='" + getName() + "'" +
+            ", phone='" + getPhone() + "'" +
             ", gender='" + getGender() + "'" +
             ", email='" + getEmail() + "'" +
             ", birthDay='" + getBirthDay() + "'" +
             ", address='" + getAddress() + "'" +
             ", role='" + getRole() + "'" +
-            ", phone='" + getPhone() + "'" +
             ", status='" + getStatus() + "'" +
             "}";
     }

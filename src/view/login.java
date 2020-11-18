@@ -9,7 +9,7 @@ package view;
 import Connection.Connec;
 import Helper.MessageDialog;
 import Helper.RoleHelper;
-import Helper.VallidateLogin;
+import Helper.Validation;
 import controller.UserDAO;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -250,10 +250,10 @@ public class login extends javax.swing.JFrame {
 //        }
         String role=null;
         StringBuilder sb = new StringBuilder();
-        VallidateLogin.ValidateEmptyLogin(txtname, sb, "Vui lòng nhập username");
-        VallidateLogin.ValidateEmptyLogin(txtpass, sb, "Vui lòng nhập password");
+        Validation.ValidateEmpty(txtname, sb, "Vui lòng nhập username");
+        Validation.ValidateEmpty(txtpass, sb, "Vui lòng nhập password");
         if (sb.length()>0) {
-            MessageDialog.showErrorDialog(this, sb.toString(), "Lõi");
+            MessageDialog.showErrorDialog(this, sb.toString(), "Lỗi");
             return;
         }
         UserDAO dao = new UserDAO();

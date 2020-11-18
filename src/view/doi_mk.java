@@ -5,8 +5,14 @@
  */
 package view;
 
+import Helper.MessageDialog;
+import Helper.RoleHelper;
+import Helper.Validation;
+import controller.UserDAO;
 import view.admin.MDI_admin;
 import javax.swing.JOptionPane;
+import model.User;
+import view.employee.MDI_employees;
 
 /**
  *
@@ -31,16 +37,16 @@ public class doi_mk extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         kGradientPanel1 = new keeptoo.KGradientPanel();
-        jTextField1 = new javax.swing.JTextField();
+        txtname = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        txtpass = new javax.swing.JPasswordField();
         jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jPasswordField2 = new javax.swing.JPasswordField();
+        txtchangepass = new javax.swing.JPasswordField();
         jLabel6 = new javax.swing.JLabel();
 
         setClosable(true);
@@ -50,14 +56,14 @@ public class doi_mk extends javax.swing.JInternalFrame {
         kGradientPanel1.setkStartColor(new java.awt.Color(86, 180, 211));
         kGradientPanel1.setLayout(null);
 
-        jTextField1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtname.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtname.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtnameActionPerformed(evt);
             }
         });
-        kGradientPanel1.add(jTextField1);
-        jTextField1.setBounds(328, 81, 240, 30);
+        kGradientPanel1.add(txtname);
+        txtname.setBounds(328, 81, 240, 30);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/rsz_1logo1.png"))); // NOI18N
         kGradientPanel1.add(jLabel1);
@@ -73,9 +79,9 @@ public class doi_mk extends javax.swing.JInternalFrame {
         kGradientPanel1.add(jLabel3);
         jLabel3.setBounds(328, 131, 90, 17);
 
-        jPasswordField1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        kGradientPanel1.add(jPasswordField1);
-        jPasswordField1.setBounds(328, 151, 240, 31);
+        txtpass.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        kGradientPanel1.add(txtpass);
+        txtpass.setBounds(328, 151, 240, 31);
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/login (1).png"))); // NOI18N
@@ -111,9 +117,9 @@ public class doi_mk extends javax.swing.JInternalFrame {
         kGradientPanel1.add(jPanel2);
         jPanel2.setBounds(0, 0, 688, 55);
 
-        jPasswordField2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        kGradientPanel1.add(jPasswordField2);
-        jPasswordField2.setBounds(328, 208, 240, 31);
+        txtchangepass.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        kGradientPanel1.add(txtchangepass);
+        txtchangepass.setBounds(328, 208, 240, 31);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setText("Confirm password");
@@ -134,14 +140,41 @@ public class doi_mk extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtnameActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        MDI_admin ad = new MDI_admin();
-        ad.setVisible(true);
+        
+        if (!(txtchangepass.getPassword().equals(new String(txtpass.getPassword())))) {
+            MessageDialog.showMessageDialog(this, "password không khớp", "Lỗi");
+        }
+        
+        StringBuilder sb = new StringBuilder();
+        Validation.ValidateEmpty(txtname, sb, "Vui lòng nhập username");
+        Validation.ValidateEmpty(txtpass, sb, "Vui lòng nhập password");
+        Validation.ValidateEmpty(txtpass, sb, "Vui lòng nhập password mới");
+        if (sb.length()>0) {
+            MessageDialog.showErrorDialog(this, sb.toString(), "Lỗi");
+            return;
+        }
+        UserDAO dao = new UserDAO();
+        try {
+            User us = dao.changePassword(txtname.getText(), new String(txtpass.getPassword()));
+            if (us == null) {
+                MessageDialog.showErrorDialog(this, "Username hoặc password không đúng", "Thông báo");
+            }else{
+                login login = new login();
+                login.setVisible(true);
+                
+                MessageDialog.showMessageDialog(this, "Đổi mật khẩu thành công","Thông báo");
+                this.dispose();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            MessageDialog.showErrorDialog(this, e.getMessage(), "Lỗi");
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -162,9 +195,9 @@ public class doi_mk extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JPasswordField jPasswordField2;
-    private javax.swing.JTextField jTextField1;
     private keeptoo.KGradientPanel kGradientPanel1;
+    private javax.swing.JPasswordField txtchangepass;
+    private javax.swing.JTextField txtname;
+    private javax.swing.JPasswordField txtpass;
     // End of variables declaration//GEN-END:variables
 }
