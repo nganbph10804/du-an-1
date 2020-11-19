@@ -8,7 +8,10 @@ package view.admin;
 import Helper.MessageDialog;
 import Helper.Validation;
 import controller.UserDAO;
+import java.util.ArrayList;
+import java.util.List;
 import model.User;
+import view.login;
 
 /**
  *
@@ -19,9 +22,13 @@ public class cap_nhat_nv extends javax.swing.JInternalFrame {
     /**
      * Creates new form cap_nhat_nv
      */
+    UserDAO dao = new UserDAO();
+    List<User> list = new ArrayList<>();
+
     public cap_nhat_nv() {
         initComponents();
         txtid.setEnabled(false);
+        txtuser.setEnabled(false);
     }
 
     /**
@@ -47,7 +54,7 @@ public class cap_nhat_nv extends javax.swing.JInternalFrame {
         rdomale = new javax.swing.JRadioButton();
         jLabel12 = new javax.swing.JLabel();
         txtemail = new javax.swing.JTextField();
-        btnadd = new javax.swing.JButton();
+        btnclear = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         txtaddress = new javax.swing.JTextArea();
         jLabel11 = new javax.swing.JLabel();
@@ -59,6 +66,7 @@ public class cap_nhat_nv extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         txtid = new javax.swing.JTextField();
+        btnupdate = new javax.swing.JButton();
 
         setClosable(true);
         setMaximizable(true);
@@ -167,16 +175,16 @@ public class cap_nhat_nv extends javax.swing.JInternalFrame {
         jPanel1.add(txtemail);
         txtemail.setBounds(10, 140, 240, 30);
 
-        btnadd.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnadd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/update.png"))); // NOI18N
-        btnadd.setText("Cậtp nhật");
-        btnadd.addActionListener(new java.awt.event.ActionListener() {
+        btnclear.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnclear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/eraser.png"))); // NOI18N
+        btnclear.setText("Clear");
+        btnclear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnaddActionPerformed(evt);
+                btnclearActionPerformed(evt);
             }
         });
-        jPanel1.add(btnadd);
-        btnadd.setBounds(340, 240, 140, 40);
+        jPanel1.add(btnclear);
+        btnclear.setBounds(340, 280, 140, 40);
 
         txtaddress.setColumns(20);
         txtaddress.setRows(5);
@@ -246,6 +254,17 @@ public class cap_nhat_nv extends javax.swing.JInternalFrame {
         jPanel1.add(txtid);
         txtid.setBounds(10, 40, 240, 30);
 
+        btnupdate.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnupdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/update.png"))); // NOI18N
+        btnupdate.setText("Cập nhật");
+        btnupdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnupdateActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnupdate);
+        btnupdate.setBounds(340, 230, 140, 40);
+
         kGradientPanel1.add(jPanel1);
         jPanel1.setBounds(10, 120, 600, 350);
 
@@ -283,66 +302,117 @@ public class cap_nhat_nv extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtemailActionPerformed
 
-    private void btnaddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnaddActionPerformed
+    private void btnclearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnclearActionPerformed
         // TODO add your handling code here:
-        StringBuilder sb = new StringBuilder();
-        Validation.ValidateEmpty(txtuser, sb, "Vui lòng nhập username");
-        Validation.ValidateEmpty(txtname, sb, "Vui lòng nhập họ tên");
-        Validation.ValidateEmpty(txtdate, sb, "Vui lòng nhập ngày sinh");
-        Validation.ValidateEmpty(txtphone, sb, "Vui lòng nhập số điẹn thoại");
-        Validation.ValidateEmpty(txtemail, sb, "Vui lòng nhập họ email");
-        Validation.ValidateEmpty(txtaddress, sb, "Vui lòng nhập địa chỉ");
-        if (sb.length()>0) {
-            MessageDialog.showErrorDialog(this, sb.toString(), "Lỗi");
-            return;
-        }
-        try {
-            User us = new User();
-            us.setUserName(txtuser.getText());
-            us.setName(txtname.getText());
-             us.setBirthDay(txtdate.getText());
-            String gender =null;
-            if (rdomale.isSelected()) {
-                gender="Nam";
-            }
-            if (rdofemale.isSelected()) {
-                gender="Nữ";
-            }
-            us.setGender(gender);
-            us.setPhone(txtphone.getText());
-            us.setEmail(txtemail.getText());       
-            us.setAddress(txtaddress.getText());
-            UserDAO dao = new UserDAO();
-            if (dao.update(us)) {
-                MessageDialog.showMessageDialog(this, "Thêm nhân viên thành công", "Thông báo");
-            }else{
-                MessageDialog.showMessageDialog(this, "Thêm nhân viên thất bại", "Thông báo");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            MessageDialog.showErrorDialog(this, e.getMessage(), "Lỗi");
-        }
-    }//GEN-LAST:event_btnaddActionPerformed
+        txtid.setText("");
+        txtuser.setText("");
+        txtname.setText("");
+        txtdate.setText("");
+        rdomale.setSelected(true);
+        txtphone.setText("");
+        txtemail.setText("");
+        txtaddress.setText("");
+
+    }//GEN-LAST:event_btnclearActionPerformed
 
     private void txtsearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtsearchActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtsearchActionPerformed
 
     private void btnsearch1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsearch1ActionPerformed
-        // TODO add your handling code here:
-        //        btnadd.setEnabled(true);
-
+        StringBuilder sb = new StringBuilder();
         
+        Validation.ValidateEmpty(txtsearch, sb, "Vui lòng nhập SĐT cần tìm");
+        Validation.ValidateNumbers(txtsearch, sb, "Vui lòng nhập SĐT là số và không âm");
+         if (sb.length()>0) {
+            MessageDialog.showErrorDialog(this, sb.toString(), "Lỗi");
+            return;
+        }
+        try {
+            User us = dao.searchPhone(txtsearch.getText());
+            txtid.setText(us.getUserID());
+            txtuser.setText(us.getUserName());
+            txtname.setText(us.getName());
+            txtdate.setText(us.getBirthDay());
+            String sex = us.getGender();
+            if (sex.equalsIgnoreCase("Nam")) {
+                rdomale.setSelected(true);
+            }
+            if (sex.equalsIgnoreCase("Nữ")) {
+                rdofemale.setSelected(true);
+            }
+            txtphone.setText(us.getPhone());
+            txtemail.setText(us.getEmail());
+            txtaddress.setText(us.getAddress());
+        } catch (Exception e) {
+            e.printStackTrace();
+            MessageDialog.showErrorDialog(this, e.getMessage(), "Không có SĐT");
+        }
+
     }//GEN-LAST:event_btnsearch1ActionPerformed
 
     private void txtidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtidActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtidActionPerformed
 
+    private void btnupdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnupdateActionPerformed
+        // TODO add your handling code here:
+        StringBuilder sb = new StringBuilder();
+        Validation.ValidateEmpty(txtname, sb, "Vui lòng nhập họ tên");
+        Validation.ValidateEmpty(txtdate, sb, "Vui lòng nhập ngày sinh");
+        Validation.ValidateEmpty(txtphone, sb, "Vui lòng nhập số điẹn thoại");
+        Validation.ValidateEmpty(txtemail, sb, "Vui lòng nhập họ email");
+        Validation.ValidateEmpty(txtaddress, sb, "Vui lòng nhập địa chỉ");
+        Validation.ValidateDate(txtdate, sb, "Mời nhập đúng định dạng yyyy-MM-dd");
+        Validation.ValidateNumbers(txtphone, sb, "Vui lòng nhập SĐT là số và không âm");
+        Validation.ValidateEmail(txtemail, sb, "Vui lòng nhập email the định dạng Example@gmail.com");
+        if (sb.length() > 0) {
+            MessageDialog.showErrorDialog(this, sb.toString(), "Lỗi");
+            return;
+        }
+
+        try {
+            User us = new User();
+            us.setName(txtname.getText());
+            us.setBirthDay(txtdate.getText());
+            String gender = "";
+            if (rdomale.isSelected()) {
+                gender = "Nam";
+            }
+            if (rdofemale.isSelected()) {
+                gender = "Nữ";
+            }
+            us.setGender(gender);
+            us.setPhone(txtphone.getText());
+            us.setEmail(txtemail.getText());
+            us.setAddress(txtaddress.getText());
+            us.setUserID(txtid.getText());
+            UserDAO dao = new UserDAO();
+            if (dao.update(us)) {
+                MessageDialog.showMessageDialog(this, "Update nhân viên thành công", "Thông báo");
+                txtuser.setText("");
+                txtid.setText("");
+                txtname.setText("");
+                txtdate.setText("");
+                rdomale.setSelected(true);
+                txtphone.setText("");
+                txtemail.setText("");
+                txtaddress.setText("");
+
+            } else {
+                MessageDialog.showMessageDialog(this, "Update nhân viên thất bại", "Thông báo");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            MessageDialog.showErrorDialog(this, e.getMessage(), "Lỗi");
+        }
+    }//GEN-LAST:event_btnupdateActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnadd;
+    private javax.swing.JButton btnclear;
     private javax.swing.JButton btnsearch1;
+    private javax.swing.JButton btnupdate;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -357,15 +427,15 @@ public class cap_nhat_nv extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane3;
     private keeptoo.KGradientPanel kGradientPanel1;
-    private javax.swing.JRadioButton rdofemale;
-    private javax.swing.JRadioButton rdomale;
-    private javax.swing.JTextArea txtaddress;
-    private javax.swing.JTextField txtdate;
-    private javax.swing.JTextField txtemail;
-    private javax.swing.JTextField txtid;
-    private javax.swing.JTextField txtname;
-    private javax.swing.JTextField txtphone;
+    public javax.swing.JRadioButton rdofemale;
+    public javax.swing.JRadioButton rdomale;
+    public javax.swing.JTextArea txtaddress;
+    public javax.swing.JTextField txtdate;
+    public javax.swing.JTextField txtemail;
+    public javax.swing.JTextField txtid;
+    public javax.swing.JTextField txtname;
+    public javax.swing.JTextField txtphone;
     private javax.swing.JTextField txtsearch;
-    private javax.swing.JTextField txtuser;
+    public javax.swing.JTextField txtuser;
     // End of variables declaration//GEN-END:variables
 }

@@ -30,8 +30,6 @@ public class the_muon_qua_han extends javax.swing.JInternalFrame {
         kGradientPanel1 = new keeptoo.KGradientPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jLabel4 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jComboBox2 = new javax.swing.JComboBox<>();
@@ -68,15 +66,6 @@ public class the_muon_qua_han extends javax.swing.JInternalFrame {
         kGradientPanel1.add(jScrollPane1);
         jScrollPane1.setBounds(10, 60, 790, 430);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kích hoạt", "Quá hạn" }));
-        kGradientPanel1.add(jComboBox1);
-        jComboBox1.setBounds(140, 10, 140, 40);
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel4.setText("Trạng thái");
-        kGradientPanel1.add(jLabel4);
-        jLabel4.setBounds(30, 10, 80, 40);
-
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/music-and-multimedia.png"))); // NOI18N
         kGradientPanel1.add(jButton2);
         jButton2.setBounds(320, 500, 70, 40);
@@ -86,13 +75,18 @@ public class the_muon_qua_han extends javax.swing.JInternalFrame {
         jButton3.setBounds(420, 500, 70, 40);
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Khoa học", "Chính trị" }));
+        jComboBox2.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox2ItemStateChanged(evt);
+            }
+        });
         kGradientPanel1.add(jComboBox2);
-        jComboBox2.setBounds(460, 10, 140, 40);
+        jComboBox2.setBounds(120, 10, 140, 40);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("Thể loại");
         kGradientPanel1.add(jLabel5);
-        jLabel5.setBounds(350, 10, 80, 40);
+        jLabel5.setBounds(10, 10, 80, 40);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -108,13 +102,16 @@ public class the_muon_qua_han extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jComboBox2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox2ItemStateChanged
+        
+        
+    }//GEN-LAST:event_jComboBox2ItemStateChanged
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;

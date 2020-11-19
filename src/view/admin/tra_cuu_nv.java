@@ -5,7 +5,18 @@
  */
 package view.admin;
 
+import Helper.MessageDialog;
+import Helper.Validation;
+import controller.UserDAO;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JDesktopPane;
+import javax.swing.JInternalFrame;
+import javax.swing.RowFilter;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
+import model.User;
 
 /**
  *
@@ -16,10 +27,26 @@ public class tra_cuu_nv extends javax.swing.JInternalFrame {
     /**
      * Creates new form tra_cuu_nv
      */
+    String[] columns = {"USER_ID", "USERNAME", "NAME", "BIRTH_DAY", "GENDER", "PHONE", "EMAIL", "ADDRESS"};
+    DefaultTableModel model = new DefaultTableModel(columns, 0);
+    UserDAO dao = new UserDAO();
+    List<Object[]> list = new ArrayList<>();
+    List<Object[]> lstPhone = new ArrayList<>();
+
     public tra_cuu_nv() {
         initComponents();
         btnupdate.setEnabled(false);
         btnupdate1.setEnabled(false);
+        readForm();
+    }
+
+    private void readForm() {
+        this.list = dao.selectBySQL();
+        model.setRowCount(0);
+        for (Object[] objects : this.list) {
+            this.model.addRow(objects);
+        }
+        tbluser.setModel(model);
     }
 
     /**
@@ -33,15 +60,15 @@ public class tra_cuu_nv extends javax.swing.JInternalFrame {
 
         kGradientPanel1 = new keeptoo.KGradientPanel();
         jPanel4 = new javax.swing.JPanel();
-        jTextField2 = new javax.swing.JTextField();
+        txtsearch = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         btnsearch1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         btnadd = new javax.swing.JButton();
         btnupdate = new javax.swing.JButton();
         btnupdate1 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tbltm = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tbluser = new javax.swing.JTable();
 
         setClosable(true);
         setMaximizable(true);
@@ -52,10 +79,15 @@ public class tra_cuu_nv extends javax.swing.JInternalFrame {
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("Tra cứu")));
 
-        jTextField2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        txtsearch.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtsearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                txtsearchActionPerformed(evt);
+            }
+        });
+        txtsearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtsearchKeyReleased(evt);
             }
         });
 
@@ -82,7 +114,7 @@ public class tra_cuu_nv extends javax.swing.JInternalFrame {
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(90, 90, 90))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtsearch, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(20, 20, 20)
                         .addComponent(btnsearch1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())))
@@ -94,7 +126,7 @@ public class tra_cuu_nv extends javax.swing.JInternalFrame {
                 .addComponent(jLabel3)
                 .addGap(3, 3, 3)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField2)
+                    .addComponent(txtsearch)
                     .addComponent(btnsearch1, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)))
         );
 
@@ -140,33 +172,26 @@ public class tra_cuu_nv extends javax.swing.JInternalFrame {
         kGradientPanel1.add(jPanel1);
         jPanel1.setBounds(10, 160, 370, 240);
 
-        tbltm.setModel(new javax.swing.table.DefaultTableModel(
+        tbluser.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Mã sách", "Họ tên", "Ngày sinh", "SĐT", "Email", "Giới tính", "Địa chỉ", "Username"
+                "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, true
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        tbltm.addMouseListener(new java.awt.event.MouseAdapter() {
+        ));
+        tbluser.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tbltmMouseClicked(evt);
+                tbluserMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tbltm);
+        jScrollPane2.setViewportView(tbluser);
 
-        kGradientPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(390, 10, 480, 420);
+        kGradientPanel1.add(jScrollPane2);
+        jScrollPane2.setBounds(390, 10, 452, 402);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -182,13 +207,21 @@ public class tra_cuu_nv extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void txtsearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtsearchActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_txtsearchActionPerformed
 
     private void btnsearch1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsearch1ActionPerformed
+
+        DefaultTableModel table = (DefaultTableModel) tbluser.getModel();
+        String search = txtsearch.getText();
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(table);
+        tbluser.setRowSorter(tr);
+        tr.setRowFilter(RowFilter.regexFilter(search));
+        if (txtsearch.getText().equals("")) {
+            MessageDialog.showMessageDialog(txtsearch, "Mời nhập SĐT cần tìm", "Lỗi");
+        }
         
-        btnupdate.setEnabled(true);
     }//GEN-LAST:event_btnsearch1ActionPerformed
 
     private void btnaddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnaddActionPerformed
@@ -198,30 +231,78 @@ public class tra_cuu_nv extends javax.swing.JInternalFrame {
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(ttd);
         ttd.show();
+        this.dispose();
+
     }//GEN-LAST:event_btnaddActionPerformed
 
     private void btnupdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnupdateActionPerformed
-        // TODO add your handling code here:
-       
-    }//GEN-LAST:event_btnupdateActionPerformed
-
-    private void tbltmMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbltmMouseClicked
-        // TODO add your handling code here:
-        
-        int select = tbltm.getSelectedRowCount();
-        if (select >0) {
-            btnupdate.setEnabled(true);
-        btnupdate1.setEnabled(true);
+        int index = tbluser.getSelectedRow();
+        TableModel model = tbluser.getModel();
+        String user_id = model.getValueAt(index, 0).toString();
+        String id = user_id;
+        User us = new User();
+        us.setUserID(id);
+        if (dao.disableUser(us)) {
+            MessageDialog.showMessageDialog(this, "Vô hiệu hóa nhân viên thành công!!! ", "Thông báo");
+            readForm();
+        }else{
+            MessageDialog.showMessageDialog(this, "Vô hiếu hóa nhân viên thât bại", "Lỗi");
         }
-    }//GEN-LAST:event_tbltmMouseClicked
+
+    }//GEN-LAST:event_btnupdateActionPerformed
 
     private void btnupdate1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnupdate1ActionPerformed
         // TODO add your handling code here:
-        cap_nhat_nv cn= new cap_nhat_nv();
+        cap_nhat_nv cn = new cap_nhat_nv();
         JDesktopPane desktopPane = getDesktopPane();
         desktopPane.add(cn);
         cn.show();
+        this.dispose();
+        int index = tbluser.getSelectedRow();
+        TableModel model = tbluser.getModel();
+        String user_id = model.getValueAt(index, 0).toString();
+        String username = model.getValueAt(index, 1).toString();
+        String name = model.getValueAt(index, 2).toString();
+        String birtDay = model.getValueAt(index, 3).toString();
+        String gender = model.getValueAt(index, 4).toString();
+        String phone = model.getValueAt(index, 5).toString();
+        String email = model.getValueAt(index, 6).toString();
+        String address = model.getValueAt(index, 7).toString();
+
+        cn.pack();
+        cn.setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
+        cn.txtid.setText(user_id);
+        cn.txtuser.setText(username);
+        cn.txtname.setText(name);
+        cn.txtdate.setText(birtDay);
+        String sex = gender;
+        if (gender.equalsIgnoreCase("Nam")) {
+            cn.rdomale.setSelected(true);
+        }
+        if (gender.equalsIgnoreCase("Nữ")) {
+            cn.rdofemale.setSelected(true);
+        }
+
+        cn.txtphone.setText(phone);
+        cn.txtemail.setText(email);
+        cn.txtaddress.setText(address);
+
     }//GEN-LAST:event_btnupdate1ActionPerformed
+
+    private void tbluserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbluserMouseClicked
+        // TODO add your handling code here:
+        btnupdate.setEnabled(true);
+        btnupdate1.setEnabled(true);
+    }//GEN-LAST:event_tbluserMouseClicked
+
+    private void txtsearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtsearchKeyReleased
+        // TODO add your handling code here:
+        DefaultTableModel table = (DefaultTableModel) tbluser.getModel();
+        String search = txtsearch.getText();
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(table);
+        tbluser.setRowSorter(tr);
+        tr.setRowFilter(RowFilter.regexFilter(search));
+    }//GEN-LAST:event_txtsearchKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -232,9 +313,9 @@ public class tra_cuu_nv extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JScrollPane jScrollPane2;
     private keeptoo.KGradientPanel kGradientPanel1;
-    private javax.swing.JTable tbltm;
+    private javax.swing.JTable tbluser;
+    private javax.swing.JTextField txtsearch;
     // End of variables declaration//GEN-END:variables
 }

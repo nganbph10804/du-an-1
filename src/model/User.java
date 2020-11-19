@@ -10,13 +10,14 @@ package model;
  * @author Administrator
  */
 public class User {
-    private String userName, password,name,phone,gender,email,birthDay, address,role;
+    private String userID,userName, password,name,phone,gender,email,birthDay, address,role;
     private int status;
 
     public User() {
     }
 
-    public User(String userName, String password, String name, String phone, String gender, String email, String birthDay, String address, String role, int status) {
+    public User(String userID, String userName, String password, String name, String phone, String gender, String email, String birthDay, String address, String role, int status) {
+        this.userID = userID;
         this.userName = userName;
         this.password = password;
         this.name = name;
@@ -27,6 +28,14 @@ public class User {
         this.address = address;
         this.role = role;
         this.status = status;
+    }
+
+    public String getUserID() {
+        return this.userID;
+    }
+
+    public void setUserID(String userID) {
+        this.userID = userID;
     }
 
     public String getUserName() {
@@ -109,6 +118,11 @@ public class User {
         this.status = status;
     }
 
+    public User userID(String userID) {
+        this.userID = userID;
+        return this;
+    }
+
     public User userName(String userName) {
         this.userName = userName;
         return this;
@@ -162,7 +176,8 @@ public class User {
     @Override
     public String toString() {
         return "{" +
-            " userName='" + getUserName() + "'" +
+            " userID='" + getUserID() + "'" +
+            ", userName='" + getUserName() + "'" +
             ", password='" + getPassword() + "'" +
             ", name='" + getName() + "'" +
             ", phone='" + getPhone() + "'" +
@@ -174,4 +189,5 @@ public class User {
             ", status='" + getStatus() + "'" +
             "}";
     }
+
 }

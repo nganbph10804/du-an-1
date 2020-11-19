@@ -30,11 +30,5 @@ public class membersDAO implements BaseDAO<Members, String> {
     public Members selectById(String key) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-  
-
-   
-
-
-    
+ 
 }

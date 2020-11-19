@@ -6,6 +6,7 @@
 package view;
 
 import Helper.MessageDialog;
+import Helper.RoleHelper;
 import Helper.Validation;
 import controller.UserDAO;
 import javax.swing.JFrame;
@@ -169,7 +170,7 @@ public class changePassword extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-
+        String userId=null;
         if (!(new String(txtchangepass.getPassword()).equals(new String(txtpass.getPassword())))) {
             MessageDialog.showMessageDialog(this, "Password không khớp", "Lỗi");
         }
@@ -177,17 +178,21 @@ public class changePassword extends javax.swing.JFrame {
         StringBuilder sb = new StringBuilder();
         Validation.ValidateEmpty(txtuser, sb, "Vui lòng nhập username");
         Validation.ValidateEmpty(txtpass, sb, "Vui lòng nhập password");
-        Validation.ValidateEmpty(txtpass, sb, "Vui lòng nhập password mới");
+        Validation.ValidateEmpty(txtchangepass, sb, "Vui lòng nhập password mới");
         if (sb.length()>0) {
             MessageDialog.showErrorDialog(this, sb.toString(), "Lỗi");
             return;
         }
         try {
+            userId=RoleHelper.roleUsers.getUserID();
+            String pass = txtchangepass.getText();
+            System.out.println(userId);
+            System.out.println(pass);
             User us = new User();
-            us.setUserName(txtuser.getText());
-            us.setPassword(new String(txtchangepass.getPassword()));;
-
-            UserDAO dao = new UserDAO();
+//            us.setUserName(txtuser.getText());
+            us.setPassword(new String(txtchangepass.getText()));;
+            us.setUserID(userId);
+            UserDAO dao = new UserDAO();          
             if (dao.changePassword(us)) {
                 MessageDialog.showMessageDialog(this, "Đổi mật khẩu thành công", "Thông báo");
                 this.dispose();
