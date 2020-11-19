@@ -225,28 +225,30 @@ public class them_nv extends javax.swing.JInternalFrame {
         Validation.ValidateEmpty(txtphone, sb, "Vui lòng nhập số điẹn thoại");
         Validation.ValidateEmpty(txtemail, sb, "Vui lòng nhập họ email");
         Validation.ValidateEmpty(txtaddress, sb, "Vui lòng nhập địa chỉ");
-        if (sb.length()>0) {
+        Validation.ValidateDate(txtdate, sb, "Mời nhập đúng định dạng yyyy-MM-dd");
+        Validation.ValidateNumbers(txtphone, sb, "Vui lòng nhập SĐT là số và không âm");
+        Validation.ValidateEmail(txtemail, sb, "Vui lòng nhập email the định dạng Example@gmail.com");
+        if (sb.length() > 0) {
             MessageDialog.showErrorDialog(this, sb.toString(), "Lỗi");
             return;
         }
-        Validation.ValidateDate(txtdate, sb, "Mời nhập đúng định dạng yyyy-MM-dd");
-        Validation.ValidateNumbers(txtphone, sb, "Lỗi");
+
         try {
             User us = new User();
             us.setUserName(txtuser.getText());
             us.setPassword(new String(txtpass.getPassword()));;
             us.setName(txtname.getText());
-             us.setBirthDay(txtdate.getText());
-            String gender =null;
+            us.setBirthDay(txtdate.getText());
+            String gender = null;
             if (rdomale.isSelected()) {
-                gender="Nam";
+                gender = "Nam";
             }
             if (rdofemale.isSelected()) {
-                gender="Nữ";
+                gender = "Nữ";
             }
             us.setGender(gender);
             us.setPhone(txtphone.getText());
-            us.setEmail(txtemail.getText());       
+            us.setEmail(txtemail.getText());
             us.setAddress(txtaddress.getText());
             UserDAO dao = new UserDAO();
             if (dao.insert(us)) {
@@ -259,7 +261,7 @@ public class them_nv extends javax.swing.JInternalFrame {
                 txtphone.setText("");
                 txtemail.setText("");
                 txtaddress.setText("");
-            }else{
+            } else {
                 MessageDialog.showMessageDialog(this, "Thêm nhân viên thất bại", "Thông báo");
             }
         } catch (Exception e) {

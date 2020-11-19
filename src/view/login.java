@@ -34,19 +34,7 @@ public class login extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
 
-//    class jPanelGradient extends JPanel{
-//        protected void paintComponent(Graphics g){
-//            Graphics2D g2d = (Graphics2D) g;
-//            int width = getWidth();
-//            int height = getHeight();
-//            
-//            Color c1 = new Color(52,143,80);
-//            Color c2 = new Color(86,180,211);
-//            GradientPaint gp = new GradientPaint(0, 0, c1, 180,height,c2);
-//            g2d.setPaint(gp);
-//            g2d.fillRect(0, 0, width, height);
-//        }
-//    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -230,24 +218,6 @@ public class login extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel8MouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-         
-//        String user = txtname.getText();
-//            String pass = txtpass.getText();
-//        try {
-//            Connection con = Connec.getConnection();
-//            
-//            PreparedStatement ps = con.prepareStatement("SELECT username, password FROM user where username ='"+user+ "'and SHA1(UNHEX(SHA1('"+pass+"')))");
-//            
-//            ResultSet rs = ps.executeQuery();
-//            if(rs.next()) {
-//                JOptionPane.showMessageDialog(this, "Đăng nhập thành công!!!");
-//            }else{
-//                JOptionPane.showMessageDialog(this, "Tài khoản mật khẩu không chính xác!!");
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
         String role=null;
         StringBuilder sb = new StringBuilder();
         Validation.ValidateEmpty(txtname, sb, "Vui lòng nhập username");
